@@ -32,19 +32,31 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını alt
 	
 	2) Öğrenci tablosundaki öğrencinin adını ve soyadını ve sınıfını listeleyin.
 	
+            CEVAP:  SELECT ograd,ogrsoyad,sinif 
+                    FROM ogrenci;
 	
 	3) Öğrenci tablosundaki kız öğrencileri listeleyin. 
 	
-	
+            CEVAP:  SELECT * FROM ogrenci
+                    WHERE cinsiyet = 'K'
+
 	4) Öğrenci tablosunda kaydı bulunan sınıfların adını her sınıf bir kez görüntülenecek şekilde listeleyiniz
 	
-	
+            CEVAP:  SELECT DISTINCT sinif 
+                    FROM ogrenci
+
 	5) Öğrenci tablosunda, 10A sınıfında olan kız öğrencileri listeleyiniz.
-	
-	
+
+            CEVAP:  SELECT * FROM ogrenci
+                    WHERE cinsiyet = 'K' AND
+                    sinif = '10A'
+
 	6) Öğrenci tablosundaki 10A veya 10B sınıfındaki öğrencilerin adını, soyadını ve sınıfını listeleyiniz.
 	
-	
+            CEVAP:   SELECT ograd,ogrsoyad,sinif 
+                     FROM ogrenci
+                     WHERE sinif = '10A' or sinif = '10B'
+
 	7) Öğrenci tablosundaki öğrencinin adını, soyadını ve numarasını okul numarası olarak listeleyiniz. (as kullanım örneği)
 	
 	
@@ -52,8 +64,10 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını alt
 	
 	
 	9) Öğrenci tablosundaki Adı ‘A’ harfi ile başlayan öğrencileri listeleyiniz.
-	
-	
+	                
+            CEVAP:  SELECT ograd FROM ogrenci
+                    WHERE ograd like 'A%';
+
 	10) Kitaplar tablosundaki sayfa sayısı 50 ile 200 arasında olan kitapların adını ve sayfa sayısını listeleyiniz.
 
 
@@ -68,6 +82,10 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını alt
 	
 	14) Sınıfı 10A veya 10B olan erkekleri listeleyiniz.
 	
+            CEVAP:  SELECT *
+                    FROM ogrenci
+                    WHERE cinsiyet = 'E' AND 
+                    sinif IN('10A' , '10B')
 	
 	15) Öğrenci tablosunda doğum yılı 1989 olan öğrencileri listeleyiniz.
 	
