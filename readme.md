@@ -111,12 +111,14 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını alt
             CEVAP:  SELECT *
                     FROM ogrenci
                     WHERE dtarih = 1989
+                    WHERE dtarih like '1989%' alternatif
 	
 	16) Öğrenci numarası 30 ile 50 arasında olan Kız öğrencileri listeleyiniz.
 	        CEVAP:  SELECT *
                     FROM ogrenci
                     WHERE ogrno <50
                     AND ogrno >30
+                    WHERE ogrno BETWEEN 30 AND 50 // altenatif
                     AND cinsiyet = 'K'
 
 
@@ -137,8 +139,6 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını alt
         	CEVAP:  SELECT * FROM ogrenci
                     WHERE sinif = '10A'
                     ORDER BY ogrno  desc
-
-
 
 	20) Öğrenciler tablosundaki ilk 10 kaydı listeleyiniz.
 	[İPUCU: `Select top tüm mysql versiyonlarında düzgün çalışmaz. LİMİT kullanmak daha faydalıdır`]
@@ -168,7 +168,8 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını alt
 	
             CEVAP:  SELECT * FROM ogrenci
                     WHERE sinif = '10A'
-                    ORDER BY dtarih desc
+                    AND dtarih is not null
+                    ORDER BY dtarih asc
                     LIMIT 1
 	
 	25) İkinci harfi N olan kitapları listeleyiniz.
@@ -177,9 +178,10 @@ Aşağıda istenilen sonuçlara ulaşabilmek için gerekli SQL sorgularını alt
                     WHERE kitapadi like '_n%'
 
 	26) Öğrencileri sınıflarına göre gruplayarak listeleyin.
-	
-            CEVAP:  SELECT * FROM ogrenci
-                    ORDER BY sinif
+
+            CEVAP:  SELECT sinif,count(ogrno) FROM ogrenci
+                    WHERE sinif is not null
+                    GROUP BY sinif
 
 	27) Öğrencileri her sorgulamada sıralaması farklı olacak şekilde rastgele listeleyin. 
 	[İPUCU: rand() fonksiyonu]
